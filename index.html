@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9709 Maths Study Hub</title>
+<style>
+:root{--bg:#f4f6fb;--panel:#fff;--ink:#172033;--muted:#68738a;--line:#e4e8f1;--navy:#172c4d;--blue:#4777ef;--blue2:#eaf0ff;--green:#18865b;--amber:#b87510;--red:#c54848}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(120deg,#132744,#294e83);color:white;padding:26px max(20px,calc((100% - 1200px)/2)) 24px}
+header .eyebrow{opacity:.8;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800}h1{margin:5px 0;font-size:clamp(26px,4vw,38px);letter-spacing:-.04em}header p{margin:0;color:#dbe6ff;max-width:680px}
+.wrap{max-width:1200px;margin:22px auto;padding:0 18px 48px}.topline{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 13px;font-weight:750;cursor:pointer;color:#35435b}.pill.active{background:var(--navy);color:white;border-color:var(--navy)}
+button{font:inherit;cursor:pointer}.btn{border:0;border-radius:11px;background:var(--blue);color:white;padding:10px 14px;font-weight:750}.btn.secondary{background:#eef2f9;color:#26354e}.btn:disabled{opacity:.45;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 5px 18px #18294a08}.panel h2{margin:0 0 5px;font-size:19px;letter-spacing:-.02em}.sub{color:var(--muted);margin:0 0 16px;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.stat{background:#f7f9fd;border:1px solid var(--line);border-radius:13px;padding:13px}.stat strong{font-size:25px;display:block;letter-spacing:-.04em}.stat span{font-size:12px;color:var(--muted)}
+.bar{height:8px;background:#e9edf5;border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--blue);width:0%;transition:width .2s}
+.topic-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.topic{border:1px solid var(--line);background:white;border-radius:13px;text-align:left;padding:12px;min-width:0}.topic:hover{border-color:#9fb5ff}.topic.selected{border:2px solid var(--blue);padding:11px;background:#f8faff}.topic .code{font-size:10px;color:var(--muted);font-weight:850;letter-spacing:.08em}.topic strong{display:block;font-size:13px;line-height:1.3;margin:4px 0 8px}.topic .status{font-size:11px;font-weight:800}.status.secure{color:var(--green)}.status.work{color:var(--amber)}.status.weak{color:var(--red)}.topic .mini{height:4px;background:#edf0f6;border-radius:10px;margin-top:8px;overflow:hidden}.topic .mini span{display:block;height:100%;background:var(--blue)}
+.topic-area{min-height:440px}.tag{display:inline-block;background:var(--blue2);color:#3056b8;border-radius:7px;padding:4px 8px;font-size:11px;font-weight:850;margin-bottom:9px}.topic-area h2{font-size:24px}.stage-row{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.stage{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 9px;font-size:12px;font-weight:750;color:#65718a}.stage.done{background:#e9f8f1;border-color:#bce8d5;color:#18754f}.stage.current{background:var(--navy);border-color:var(--navy);color:#fff}
+.note{background:#f7f9fd;border:1px solid var(--line);border-radius:12px;padding:13px;margin:12px 0}.note h3{font-size:13px;margin:0 0 5px}.note p{margin:0;color:#43516a}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f1f4fb;border-radius:7px;padding:2px 6px;color:#243a67}
+.question{border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}.qmeta{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:850}.qtext{font-size:17px;font-weight:700;margin:8px 0 13px}.options{display:grid;gap:8px}.option{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}.option:hover{border-color:#9fb5ff}.option.chosen{border-color:var(--blue);background:var(--blue2)}.option.correct{border-color:#80d0ad;background:#e9f8f1}.option.incorrect{border-color:#e8a2a2;background:#fff0f0}.feedback{margin-top:12px;border-radius:10px;padding:11px;background:#f7f9fd;color:#35435b}.feedback.good{background:#e9f8f1;color:#126c48}.feedback.bad{background:#fff0f0;color:#a33434}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.field{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white;color:var(--ink)}.logitem{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.logitem:last-child{border:0}.muted{color:var(--muted)}.small{font-size:12px}.hidden{display:none!important}
+footer{color:var(--muted);font-size:12px;margin-top:18px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.topic-area{min-height:0}.topic-list{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:450px){.topic-list{grid-template-columns:1fr}.stats{gap:6px}.stat{padding:10px}.panel{padding:15px}}
+
+.toolgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+select,input[type=number],input[type=text]{font:inherit}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}
+.resultbox{background:#f7f9fd;border:1px solid var(--line);padding:12px;border-radius:12px;margin-top:12px}
+.paperlog{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.paperlog:last-child{border:0}
+.timer{font-size:28px;font-weight:850;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.rec{border:1px solid var(--line);padding:11px;border-radius:12px;margin:8px 0}
+.rec strong{display:block}.rec p{margin:3px 0 8px;color:var(--muted);font-size:13px}
+@media(max-width:820px){.toolgrid{grid-template-columns:1fr}}
+</style>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#172c4d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="9709 Maths Hub">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+</head>
+<body>
+<header><div class="eyebrow">Cambridge International · 9709</div><h1>Maths Study Hub</h1><p>Your personal revision workspace for P1, P3, Mechanics and Statistics 1. Learn a skill, practise it, fix mistakes, and track your confidence.</p></header>
+<div class="wrap">
+<div class="topline"><div class="pills" id="paperFilters"></div><button class="btn secondary" id="resetBtn">Reset progress</button></div>
+<div class="stats">
+ <div class="stat"><strong id="doneCount">0/27</strong><span>Topics secure</span></div>
+ <div class="stat"><strong id="attemptCount">0</strong><span>Questions attempted</span></div>
+ <div class="stat"><strong id="accuracy">—</strong><span>Quiz accuracy</span></div>
+</div>
+<div class="bar"><span id="overallBar"></span></div>
+<div class="grid" style="margin-top:16px">
+ <section class="panel"><h2>Course checklist</h2><p class="sub">Choose a topic to open its study path. Status updates when you mark your confidence.</p><div class="topic-list" id="topicList"></div></section>
+ <section class="panel topic-area" id="studyPanel"><div id="studyContent"></div></section>
+</div>
+<div class="grid" style="margin-top:16px">
+ <section class="panel"><h2>Mistake log</h2><p class="sub">Keep track of the skills you need to revisit.</p><input id="mistakeInput" class="field" placeholder="e.g. Forgot to reject an invalid domain"><div class="actions"><button class="btn" id="addMistake">Add mistake</button><button class="btn secondary" id="clearMistakes">Clear log</button></div><div id="mistakeList" style="margin-top:12px"></div></section>
+ <section class="panel"><h2>How to use the hub</h2><p class="sub">A repeatable system for every topic.</p>
+ <div class="note"><h3>01 · Understand</h3><p>Read the key idea and write a short explanation in your own words.</p></div>
+ <div class="note"><h3>02 · Practise</h3><p>Try the built-in starter questions, then work through Cambridge past-paper questions for the same skill.</p></div>
+ <div class="note"><h3>03 · Correct and retest</h3><p>Log mistakes, redo questions without notes, and mark a topic Secure only when you can do it independently.</p></div>
+ <p class="small muted">Progress is saved in this browser on this device.</p></section>
+</div>
+
+<div class="toolgrid">
+ <section class="panel"><h2>Personalised revision</h2><p class="sub">Your next steps are based on topic confidence and quiz performance.</p><div id="recommendations"></div><button class="btn" id="startRecommended">Study highest priority</button></section>
+ <section class="panel"><h2>Past-paper tracker</h2><p class="sub">Open official papers, record what you attempted, and track marks.</p>
+ <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/" target="_blank" rel="noopener" class="btn" style="display:inline-block;text-decoration:none">Open official Cambridge past papers ↗</a>
+ <div class="formrow"><select class="field" id="paperCode"><option>P1</option><option>P3</option><option>M1</option><option>S1</option></select><input class="field" id="paperSession" placeholder="Session/year e.g. May/June 2026"></div>
+ <div class="formrow"><input class="field" id="paperQuestion" placeholder="Question / topic"><input class="field" id="paperScore" type="text" inputmode="numeric" placeholder="Marks e.g. 7/10"></div>
+ <button class="btn" id="savePaper">Save paper attempt</button><div id="paperLog" style="margin-top:10px"></div>
+ </section>
+</div>
+<section class="panel" style="margin-top:16px"><h2>Exam simulator</h2><p class="sub">Build a timed mini-paper from the topics in this app. Select a paper, set a duration, answer the questions, then submit for a score and review.</p>
+ <div class="formrow"><select class="field" id="simPaper"><option value="ALL">Mixed paper · all papers</option><option>P1</option><option>P3</option><option>M1</option><option>S1</option></select><select class="field" id="simDifficulty"><option value="Starter">Starter</option><option value="Exam" selected>Exam practice</option><option value="Challenge">Challenge</option></select></div>
+ <div class="formrow"><select class="field" id="simCount"><option value="5">5 questions</option><option value="10" selected>10 questions</option><option value="15">15 questions</option><option value="20">20 questions</option></select><select class="field" id="simMinutes"><option value="10">10 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option></select></div>
+ <div class="actions"><button class="btn" id="startSim">Start simulation</button><button class="btn secondary" id="submitSim" disabled>Submit answers</button></div>
+ <div id="simArea" class="resultbox"><span class="muted">Your timed paper will appear here.</span></div>
+</section>
+<footer>Topic coverage follows the Cambridge 9709 syllabus for 2026–2027. Practice questions in this starter app are original questions, not copied Cambridge past-paper questions. Use official past papers for full exam practice.</footer>
+</div>
+<script>
+const topics=[
+["P1","1.1","Quadratics","Roots, discriminant, completing the square, quadratic graphs.","For ax²+bx+c=0, use the discriminant b²−4ac to determine the nature of the roots."],
+["P1","1.2","Functions","Function notation, domain and range, composite and inverse functions.","For an inverse, swap x and y, then rearrange for y; check the original domain."],
+["P1","1.3","Coordinate geometry","Gradients, straight lines, parallel/perpendicular lines and circles.","Gradient m=(y₂−y₁)/(x₂−x₁); perpendicular non-vertical gradients multiply to −1."],
+["P1","1.4","Circular measure","Radians, arc length, sector area and radians in formulae.","For θ in radians: arc length s=rθ; sector area A=½r²θ."],
+["P1","1.5","Trigonometry","Sine, cosine and tangent graphs, exact values, identities and equations.","sin²x+cos²x=1; tan x=sin x/cos x."],
+["P1","1.6","Series","Binomial expansion, arithmetic and geometric progressions, sums.","Arithmetic: uₙ=a+(n−1)d; geometric: uₙ=arⁿ⁻¹."],
+["P1","1.7","Differentiation","Gradient functions, tangents, normals, stationary points and rates of change.","If y=axⁿ, then dy/dx=anxⁿ⁻¹."],
+["P1","1.8","Integration","Reverse differentiation, constants, definite integrals and areas.","∫axⁿ dx = axⁿ⁺¹/(n+1)+C, for n≠−1."],
+["P3","3.1","Algebra","Algebraic fractions, partial fractions and algebraic manipulation.","When combining fractions, factor denominators and state any excluded values."],
+["P3","3.2","Logarithmic and exponential functions","Laws of logarithms, exponential equations and transformations.","logₐ(xy)=logₐx+logₐy; only take logs of positive arguments."],
+["P3","3.3","Trigonometry","Compound/double angles, identities and solving trigonometric equations.","sin 2x=2sin x cos x; cos 2x=cos²x−sin²x."],
+["P3","3.4","Differentiation","Product, quotient and chain rules; implicit differentiation; rates.","Product rule: (uv)'=u'v+uv'; chain rule: dy/dx=(dy/du)(du/dx)."],
+["P3","3.5","Integration","Integration by substitution, parts, partial fractions and areas/volumes.","Integration by parts: ∫u(dv/dx)dx=uv−∫v(du/dx)dx."],
+["P3","3.6","Numerical solution of equations","Root intervals, iteration and convergence.","For iteration xₙ₊₁=F(xₙ), use the stated starting value and keep sufficient accuracy."],
+["P3","3.7","Vectors","Vector notation, magnitude, position vectors and lines.","For vector (a,b,c), magnitude is √(a²+b²+c²)."],
+["P3","3.8","Differential equations","Separable first-order differential equations and initial conditions.","Separate variables, integrate both sides, then apply the initial condition."],
+["P3","3.9","Complex numbers","Real/imaginary parts, modulus, argument, conjugates and equations.","For z=a+bi, |z|=√(a²+b²) and z̄=a−bi."],
+["M1","4.1","Forces and equilibrium","Force diagrams, resolving forces, resultant and equilibrium.","In equilibrium, resolve and set ΣFₓ=0 and ΣFᵧ=0."],
+["M1","4.2","Kinematics in a straight line","Displacement, velocity, acceleration and constant-acceleration formulae.","v=u+at; s=ut+½at²; v²=u²+2as."],
+["M1","4.3","Newton’s laws of motion","Resultant force, mass, acceleration, connected particles and resistance.","Newton’s second law: resultant force = mass × acceleration."],
+["M1","4.4","Momentum","Momentum, impulse and conservation of momentum.","Impulse equals change in momentum: Ft=mv−mu for constant force."],
+["M1","4.5","Energy, work and power","Work done, kinetic/potential energy and power.","Kinetic energy=½mv²; gravitational potential energy=mgh; power=work/time."],
+["S1","5.1","Representation of data","Choosing diagrams, averages, spread, variance and standard deviation.","For data xᵢ with frequencies fᵢ, mean=Σfᵢxᵢ/Σfᵢ."],
+["S1","5.2","Permutations and combinations","Counting arrangements and selections.","nCr=n!/[r!(n−r)!]; order matters for permutations, not combinations."],
+["S1","5.3","Probability","Events, complements, mutually exclusive events and conditional probability.","P(A')=1−P(A); for independent events P(A∩B)=P(A)P(B)."],
+["S1","5.4","Discrete random variables","Probability distributions, expectation and variance.","E(X)=Σxp(x); Var(X)=E(X²)−[E(X)]²."],
+["S1","5.5","The normal distribution","Normal curves, standardisation and inverse normal calculations.","Standardise with Z=(X−μ)/σ."]
+];
+const quizzes={
+"1.1":[{q:"For x²−5x+6=0, what are the roots?",o:["x=2 and x=3","x=−2 and x=−3","x=1 and x=6","x=−1 and x=−6"],a:0,e:"Factor: (x−2)(x−3)=0, so x=2 or x=3."},{q:"What is the discriminant of 2x²+3x+5=0?",o:["49","−31","31","−49"],a:1,e:"b²−4ac=9−40=−31, so there are no real roots."}],
+"1.2":[{q:"For f(x)=√(x−4), what is the domain?",o:["x≤4","x≥4","x>0","All real x"],a:1,e:"The expression under the square root must be non-negative: x−4≥0."},{q:"If f(x)=2x+1, what is f(3)?",o:["5","6","7","8"],a:2,e:"f(3)=2(3)+1=7."}],
+"1.3":[{q:"What is the gradient between (1,2) and (5,10)?",o:["½","2","4","8"],a:1,e:"m=(10−2)/(5−1)=8/4=2."}],
+"1.4":[{q:"A circle has radius 4 cm and angle 1.5 radians. Find the arc length.",o:["2.67 cm","6 cm","8 cm","12 cm"],a:1,e:"s=rθ=4×1.5=6 cm."}],
+"1.5":[{q:"Which identity is always true?",o:["sin x+cos x=1","sin²x+cos²x=1","tan x=cos x/sin x","sin 2x=sin²x"],a:1,e:"The fundamental identity is sin²x+cos²x=1."}],
+"1.6":[{q:"An arithmetic sequence starts 7, 11, 15, ... What is its 10th term?",o:["39","43","47","40"],a:1,e:"u₁₀=7+(10−1)4=43."}],
+"1.7":[{q:"Differentiate y=3x⁴−2x².",o:["12x³−4x","3x³−2x","12x⁴−4x²","12x³−2"],a:0,e:"Apply the power rule term by term."}],
+"1.8":[{q:"Evaluate ∫(6x²) dx.",o:["2x³+C","18x+C","6x³+C","3x²+C"],a:0,e:"Increase the power to 3 and divide by 3: 6x³/3=2x³+C."}],
+"3.1":[{q:"Simplify x²−9 over x−3, where x≠3.",o:["x−3","x+3","x²+3","1"],a:1,e:"x²−9=(x−3)(x+3), then cancel x−3."}],
+"3.2":[{q:"Simplify ln(e³).",o:["e³","3","1/3","ln 3"],a:1,e:"ln and the exponential function undo one another: ln(e³)=3."}],
+"3.3":[{q:"Which expression equals sin 2x?",o:["2 sin x cos x","sin²x−cos²x","2 sin x","cos²x−sin²x"],a:0,e:"The double-angle identity is sin 2x=2 sin x cos x."}],
+"3.4":[{q:"Differentiate y=(x²+1)³.",o:["3(x²+1)²","6x(x²+1)²","2x(x²+1)³","6x²(x²+1)²"],a:1,e:"Chain rule: 3(x²+1)²×2x."}],
+"3.5":[{q:"Which is the integration-by-parts formula?",o:["∫u v dx=uv","∫u v' dx=uv−∫u'v dx","∫u v' dx=u'v","∫u'v dx=uv+∫uv' dx"],a:1,e:"Choose u and dv/dx, then integrate uv' as uv−∫u'v dx."}],
+"3.6":[{q:"An iteration is xₙ₊₁=F(xₙ). What do you do to generate x₂ from x₁?",o:["Use F(x₁)","Use F(x₂)","Differentiate F","Set x₂=0 always"],a:0,e:"Substitute the current estimate x₁ into F to calculate the next estimate."}],
+"3.7":[{q:"Find the magnitude of vector (3,4).",o:["7","12","5","25"],a:2,e:"Magnitude=√(3²+4²)=√25=5."}],
+"3.8":[{q:"If dy/dx=2x, what is the general solution?",o:["y=2+C","y=x²+C","y=2x²+C","y=x+C"],a:1,e:"Integrate: y=∫2x dx=x²+C."}],
+"3.9":[{q:"For z=3+4i, what is |z|?",o:["7","1","5","25"],a:2,e:"|z|=√(3²+4²)=5."}],
+"4.1":[{q:"A particle is in equilibrium under horizontal forces 8 N right and F N left. Find F.",o:["0 N","4 N","8 N","16 N"],a:2,e:"For equilibrium the resultant is zero, so F=8 N."}],
+"4.2":[{q:"A body starts at 2 m/s and accelerates at 3 m/s² for 4 s. Find its final speed.",o:["8 m/s","12 m/s","14 m/s","20 m/s"],a:2,e:"v=u+at=2+3×4=14 m/s."}],
+"4.3":[{q:"A resultant force of 15 N acts on a 3 kg mass. Find its acceleration.",o:["5 m/s²","12 m/s²","18 m/s²","45 m/s²"],a:0,e:"a=F/m=15/3=5 m/s²."}],
+"4.4":[{q:"A 2 kg body changes velocity from 3 m/s to 7 m/s. What is its change in momentum?",o:["4 kg m/s","8 kg m/s","10 kg m/s","14 kg m/s"],a:1,e:"Δp=m(v−u)=2(7−3)=8 kg m/s."}],
+"4.5":[{q:"Find the kinetic energy of a 2 kg object moving at 3 m/s.",o:["6 J","9 J","12 J","18 J"],a:1,e:"KE=½mv²=½×2×9=9 J."}],
+"5.1":[{q:"Data values 2, 4 and 6 have what mean?",o:["3","4","5","12"],a:1,e:"Mean=(2+4+6)/3=4."}],
+"5.2":[{q:"How many ways can 2 people be selected from 5?",o:["10","20","25","120"],a:0,e:"⁵C₂=5!/(2!3!)=10."}],
+"5.3":[{q:"If P(A)=0.3, what is P(not A)?",o:["0.3","0.7","1.3","−0.3"],a:1,e:"P(A')=1−P(A)=0.7."}],
+"5.4":[{q:"X takes values 1 and 3 with probabilities 0.5 each. Find E(X).",o:["1","2","2.5","4"],a:1,e:"E(X)=1(0.5)+3(0.5)=2."}],
+"5.5":[{q:"For X~N(50, 4²), what is the standard deviation?",o:["4","16","50","54"],a:0,e:"In N(μ,σ²), the second parameter is variance, so σ=√16=4."}]
+};
+const stages=["Theory","Formulas","Basic questions","Exam questions","Hard questions","Mistake correction","Retest"];
+let state={status:{},stages:{},attempts:0,correct:0,mistakes:[],answered:{},paperAttempts:[]};
+try{state={...state,...JSON.parse(localStorage.getItem("9709hub")||"{}")}}catch(e){}
+let filter="ALL", selected="1.1", qIndex=0, chosen=null, currentDifficulty="Starter", sim=null, simTimer=null;
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("9709hub",JSON.stringify(state));renderStats();renderTopics();renderMistakes();renderRecommendations();renderPaperLog()}
+function topicById(id){return topics.find(t=>t[1]===id)}
+function renderFilters(){ $("paperFilters").innerHTML=["ALL","P1","P3","M1","S1"].map(p=>`<button class="pill ${filter===p?'active':''}" data-filter="${p}">${p==="ALL"?"All papers":p}</button>`).join("");document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderTopics()})}
+function renderStats(){const secure=topics.filter(t=>state.status[t[1]]==="Secure").length;$("doneCount").textContent=secure+"/"+topics.length;$("attemptCount").textContent=state.attempts;$("accuracy").textContent=state.attempts?Math.round(state.correct/state.attempts*100)+"%":"—";$("overallBar").style.width=(secure/topics.length*100)+"%"}
+function renderTopics(){const arr=topics.filter(t=>filter==="ALL"||t[0]===filter);$("topicList").innerHTML=arr.map(t=>{let s=state.status[t[1]]||"Needs work",done=(state.stages[t[1]]||[]).length;return `<button class="topic ${selected===t[1]?'selected':''}" data-topic="${t[1]}"><span class="code">${t[0]} · ${t[1]}</span><strong>${t[2]}</strong><span class="status ${s==="Secure"?'secure':s==="Weak"?'weak':'work'}">${s}</span><div class="mini"><span style="width:${done/stages.length*100}%"></span></div></button>`}).join("");document.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>{selected=b.dataset.topic;qIndex=0;chosen=null;renderTopics();renderStudy()})}
+
+function difficultyQuestion(topic, level, base){
+ if(level==="Starter") return base;
+ if(level==="Exam") return {q:`Exam practice: ${topic[2]}. Explain the method you would use, then solve a suitable Cambridge-style question from your notes or a past paper. What is the key first step?`,o:["Identify the relevant formula/rule and show the working","Guess an answer and move on","Use a formula even if its conditions do not apply","Skip working and write only a final answer"],a:0,e:`For ${topic[2]}, start by identifying the relevant method, state any conditions, show each step clearly, and check the result. This is a guided exam-strategy prompt rather than an official past-paper question.`};
+ return {q:`Challenge: ${topic[2]}. Without notes, describe one common trap in this topic and how you would check your final answer.`,o:["Check conditions, signs/units and whether the result fits the question","Only check whether the answer is an integer","Round every intermediate value immediately","Ignore domain or modelling restrictions"],a:0,e:`Challenge habit: check assumptions, signs, units, domain restrictions and whether your answer is sensible. Then attempt a harder question from an official paper.`};
+}
+function renderStudy(){let t=topicById(selected);if(!t)return;let completed=state.stages[selected]||[];let baseQs=quizzes[selected]||[{q:"Write down the key rule or formula for this topic, then check it against your notes.",o:["I can explain it without notes","I need more practice"],a:0,e:"Use your course notes and official syllabus to check your explanation."}];let qs=baseQs.map(q=>difficultyQuestion(t,currentDifficulty,q));if(qIndex>=qs.length)qIndex=0;let q=qs[qIndex];let answered=chosen!==null;
+$("studyContent").innerHTML=`<span class="tag">${t[0]} · ${t[1]}</span><h2>${t[2]}</h2><p class="sub">Work through the full study path. Tick a stage when you have completed it properly.</p>
+<div class="stage-row">${stages.map((s,i)=>`<button class="stage ${completed.includes(i)?'done':i===completed.length?'current':''}" data-stage="${i}">${completed.includes(i)?"✓ ":""}${s}</button>`).join("")}</div>
+<div class="note"><h3>Core idea</h3><p>${t[3]}</p></div><div class="note"><h3>Formula / exam reminder</h3><p>${t[4]}</p></div>
+<div class="formrow"><select class="field" id="difficultySelect"><option value="Starter">Starter</option><option value="Exam">Exam practice</option><option value="Challenge">Challenge</option></select><div class="resultbox" style="margin:0;font-size:12px">Difficulty changes the practice prompt and guidance.</div></div><div class="question"><div class="qmeta">${currentDifficulty} practice · Question ${qIndex+1} of ${qs.length}</div><div class="qtext">${q.q}</div><div class="options">${q.o.map((o,i)=>`<button class="option ${answered&&i===q.a?'correct':answered&&i===chosen?'incorrect':''} ${chosen===i?'chosen':''}" data-option="${i}" ${answered?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join("")}</div>
+${answered?`<div class="feedback ${chosen===q.a?'good':'bad'}"><strong>${chosen===q.a?'Correct.':'Not quite.'}</strong> ${q.e}</div>`:""}
+<div class="actions">${answered?`<button class="btn" id="nextQ">${qIndex===qs.length-1?'Restart questions':'Next question'}</button>`:`<button class="btn secondary" id="revealQ">Show answer</button>`}</div></div>
+<div class="note"><h3>Mark your confidence</h3><p>Be honest: Secure means you can answer unfamiliar questions independently and show full working.</p><div class="actions"><button class="btn" data-status="Secure">Mark Secure</button><button class="btn secondary" data-status="Needs work">Needs work</button><button class="btn secondary" data-status="Weak">Mark Weak</button></div></div>
+<div class="actions"><button class="btn secondary" id="openPast">Open official past papers ↗</button></div>`;
+const ds=$("difficultySelect");if(ds){ds.value=currentDifficulty;ds.onchange=()=>{currentDifficulty=ds.value;qIndex=0;chosen=null;renderStudy()}};
+document.querySelectorAll("[data-stage]").forEach(b=>b.onclick=()=>{let i=+b.dataset.stage;let a=state.stages[selected]||[];state.stages[selected]=a.includes(i)?a.filter(x=>x!==i):[...a,i].sort((x,y)=>x-y);save();renderStudy()});
+document.querySelectorAll("[data-option]").forEach(b=>b.onclick=()=>answer(+b.dataset.option,q));
+$("revealQ").onclick=()=>{chosen=-1;renderStudy();$("studyContent").querySelector(".feedback")?.scrollIntoView({block:"nearest"})};
+$("nextQ")?.addEventListener("click",()=>{qIndex=(qIndex+1)%qs.length;chosen=null;renderStudy()});
+document.querySelectorAll("[data-status]").forEach(b=>b.onclick=()=>{state.status[selected]=b.dataset.status;save();renderStudy()});
+$("openPast").onclick=()=>window.open("https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/","_blank","noopener");
+}
+function answer(i,q){if(chosen!==null)return;chosen=i;state.attempts++;if(i===q.a)state.correct++;save();renderStudy()}
+function renderMistakes(){$("mistakeList").innerHTML=state.mistakes.length?state.mistakes.map((m,i)=>`<div class="logitem">${escapeHtml(m)} <button class="btn secondary" style="float:right;padding:3px 8px" data-del="${i}">Remove</button></div>`).join(""):'<p class="small muted">No mistakes logged yet. Add one after marking a question.</p>';document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{state.mistakes.splice(+b.dataset.del,1);save()})}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("addMistake").onclick=()=>{let v=$("mistakeInput").value.trim();if(v){state.mistakes.unshift(v);$("mistakeInput").value="";save()}};
+$("clearMistakes").onclick=()=>{if(confirm("Clear all mistakes from this device?")){state.mistakes=[];save()}};
+$("resetBtn").onclick=()=>{if(confirm("Reset all topic progress, question scores and mistakes?")){state={status:{},stages:{},attempts:0,correct:0,mistakes:[],answered:{},paperAttempts:[]};save();renderStudy()}};
+
+function renderRecommendations(){
+ const scored=topics.map(t=>{const s=state.status[t[1]]||"Needs work";const done=(state.stages[t[1]]||[]).length;let priority=s==="Weak"?100:s==="Needs work"?60:20;priority+=Math.max(0,7-done)*2;return {t,s,done,priority}}).sort((a,b)=>b.priority-a.priority).slice(0,4);
+ $("recommendations").innerHTML=scored.map((x,i)=>`<div class="rec"><strong>${i+1}. ${x.t[2]} <span class="muted">· ${x.t[0]}</span></strong><p>${x.s==="Weak"?"High priority: revisit the theory, then do starter questions.":x.s==="Needs work"?"Practise the basics and complete the study stages.":"Maintain this topic with a short retest."} ${x.done}/7 stages complete.</p><button class="btn secondary" data-rec="${x.t[1]}">Open topic</button></div>`).join("");
+ document.querySelectorAll("[data-rec]").forEach(b=>b.onclick=()=>{selected=b.dataset.rec;filter="ALL";currentDifficulty="Starter";qIndex=0;chosen=null;renderFilters();renderTopics();renderStudy();window.scrollTo({top:0,behavior:"smooth"})});
+}
+$("startRecommended").onclick=()=>{const t=topics.map(t=>({t,s:state.status[t[1]]||"Needs work",d:(state.stages[t[1]]||[]).length})).sort((a,b)=>(a.s==="Weak"?0:a.s==="Needs work"?1:2)-(b.s==="Weak"?0:b.s==="Needs work"?1:2)||a.d-b.d)[0];selected=t.t[1];filter="ALL";currentDifficulty="Starter";qIndex=0;chosen=null;renderFilters();renderTopics();renderStudy();window.scrollTo({top:0,behavior:"smooth"})};
+function renderPaperLog(){const arr=state.paperAttempts||[];$("paperLog").innerHTML=arr.length?arr.slice().reverse().map((x,i)=>`<div class="paperlog"><div><strong>${escapeHtml(x.paper)} · ${escapeHtml(x.session)}</strong><div class="muted">${escapeHtml(x.question)} · ${escapeHtml(x.score)}</div></div><button class="btn secondary" data-paperdel="${arr.length-1-i}" style="padding:4px 8px">Remove</button></div>`).join(""):'<p class="small muted">No past-paper attempts recorded yet.</p>';document.querySelectorAll("[data-paperdel]").forEach(b=>b.onclick=()=>{state.paperAttempts.splice(+b.dataset.paperdel,1);save()})}
+$("savePaper").onclick=()=>{const session=$("paperSession").value.trim(),question=$("paperQuestion").value.trim(),score=$("paperScore").value.trim();if(!session||!question||!score){alert("Enter a session/year, question or topic, and mark score.");return}state.paperAttempts=state.paperAttempts||[];state.paperAttempts.push({paper:$("paperCode").value,session,question,score,date:new Date().toLocaleDateString()});$("paperQuestion").value="";$("paperScore").value="";save()};
+function getSimQuestions(paper,difficulty,count){let pool=topics.filter(t=>paper==="ALL"||t[0]===paper).flatMap(t=>(quizzes[t[1]]||[]).map(q=>({topic:t[2],paper:t[0],id:t[1],...difficultyQuestion(t,difficulty,q)})));if(!pool.length)return [];for(let i=pool.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}return pool.slice(0,Math.min(count,pool.length))}
+function renderSim(){if(!sim)return;let remaining=Math.max(0,sim.endsAt-Date.now());$("simArea").innerHTML=`<div class="timer" id="simClock">${Math.floor(remaining/60000).toString().padStart(2,"0")}:${Math.floor((remaining%60000)/1000).toString().padStart(2,"0")}</div><p class="small muted">${sim.paper==="ALL"?"Mixed paper":sim.paper} · ${sim.difficulty} · ${sim.questions.length} questions</p>`+sim.questions.map((q,i)=>`<div class="question"><div class="qmeta">Question ${i+1} · ${q.paper} · ${q.topic}</div><div class="qtext">${q.q}</div><div class="options">${q.o.map((o,j)=>`<button class="option ${sim.answers[i]===j?'chosen':''}" data-simq="${i}" data-sima="${j}" ${sim.submitted?'disabled':''}>${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div>${sim.submitted?`<div class="feedback ${sim.answers[i]===q.a?'good':'bad'}">${sim.answers[i]===q.a?'Correct.':'Incorrect or unanswered.'} ${q.e}</div>`:""}</div>`).join("")+(sim.submitted?`<div class="resultbox"><strong>Result: ${sim.score}/${sim.questions.length} (${Math.round(sim.score/sim.questions.length*100)}%)</strong><p>Review each explanation, log mistakes, then revise the lowest-confidence topics.</p></div>`:"");
+ document.querySelectorAll("[data-simq]").forEach(b=>b.onclick=()=>{if(!sim||sim.submitted)return;sim.answers[+b.dataset.simq]=+b.dataset.sima;renderSim()});
+}
+$("startSim").onclick=()=>{if(simTimer)clearInterval(simTimer);let paper=$("simPaper").value,difficulty=$("simDifficulty").value,count=+$("simCount").value,minutes=+$("simMinutes").value;let questions=getSimQuestions(paper,difficulty,count);if(!questions.length){alert("No questions available for this selection.");return}sim={paper,difficulty,questions,answers:{},endsAt:Date.now()+minutes*60000,submitted:false,score:0};$("submitSim").disabled=false;renderSim();simTimer=setInterval(()=>{if(!sim||sim.submitted){clearInterval(simTimer);return}if(Date.now()>=sim.endsAt){submitSimulation();return}const clock=$("simClock");if(clock){let r=sim.endsAt-Date.now();clock.textContent=`${Math.floor(r/60000).toString().padStart(2,"0")}:${Math.floor(r%60000/1000).toString().padStart(2,"0")}`}},500)};
+function submitSimulation(){if(!sim||sim.submitted)return;sim.submitted=true;sim.score=sim.questions.reduce((n,q,i)=>n+(sim.answers[i]===q.a?1:0),0);state.attempts+=sim.questions.length;state.correct+=sim.score;save();if(simTimer)clearInterval(simTimer);$("submitSim").disabled=true;renderSim()}
+$("submitSim").onclick=()=>{if(confirm("Submit this simulation and mark unanswered questions incorrect?"))submitSimulation()};
+renderFilters();renderStats();renderTopics();renderStudy();renderMistakes();renderRecommendations();renderPaperLog();
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => console.warn("Offline support unavailable:", err));
+  });
+}
+</script>
+</body></html>
