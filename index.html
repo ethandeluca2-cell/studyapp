@@ -14,7 +14,8 @@ button{font:inherit;cursor:pointer}.btn{border:0;border-radius:11px;background:v
 .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 5px 18px #18294a08}.panel h2{margin:0 0 5px;font-size:19px;letter-spacing:-.02em}.sub{color:var(--muted);margin:0 0 16px;font-size:13px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.stat{background:#f7f9fd;border:1px solid var(--line);border-radius:13px;padding:13px}.stat strong{font-size:25px;display:block;letter-spacing:-.04em}.stat span{font-size:12px;color:var(--muted)}
 .bar{height:8px;background:#e9edf5;border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--blue);width:0%;transition:width .2s}
-.topic-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.topic{border:1px solid var(--line);background:white;border-radius:13px;text-align:left;padding:12px;min-width:0}.topic:hover{border-color:#9fb5ff}.topic.selected{border:2px solid var(--blue);padding:11px;background:#f8faff}.topic .code{font-size:10px;color:var(--muted);font-weight:850;letter-spacing:.08em}.topic strong{display:block;font-size:13px;line-height:1.3;margin:4px 0 8px}.topic .status{font-size:11px;font-weight:800}.status.secure{color:var(--green)}.status.work{color:var(--amber)}.status.weak{color:var(--red)}.topic .mini{height:4px;background:#edf0f6;border-radius:10px;margin-top:8px;overflow:hidden}.topic .mini span{display:block;height:100%;background:var(--blue)}
+.topic-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.topic{border:1px solid var(--line);background:white;border-radius:13px;text-align:left;padding:12px;min-width:0}.topic:hover{border-color:#9fb5ff}.topic.selected{border:2px solid var(--blue);padding:11px;background:#f8faff}.topic .code{font-size:10px;color:var(--muted);font-weight:850;letter-spacing:.08em}.topic strong{display:block;font-size:13px;line-height:1.3;margin:4px 0 8px}.status-selected{outline:3px solid #74a8ff;box-shadow:0 0 0 2px rgba(116,168,255,.22)}
+.status{font-size:11px;font-weight:800}.status.secure{color:var(--green)}.status.work{color:var(--amber)}.status.weak{color:var(--red)}.topic .mini{height:4px;background:#edf0f6;border-radius:10px;margin-top:8px;overflow:hidden}.topic .mini span{display:block;height:100%;background:var(--blue)}
 .topic-area{min-height:440px}.tag{display:inline-block;background:var(--blue2);color:#3056b8;border-radius:7px;padding:4px 8px;font-size:11px;font-weight:850;margin-bottom:9px}.topic-area h2{font-size:24px}.stage-row{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.stage{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 9px;font-size:12px;font-weight:750;color:#65718a}.stage.done{background:#e9f8f1;border-color:#bce8d5;color:#18754f}.stage.current{background:var(--navy);border-color:var(--navy);color:#fff}
 .note{background:#f7f9fd;border:1px solid var(--line);border-radius:12px;padding:13px;margin:12px 0}.note h3{font-size:13px;margin:0 0 5px}.note p{margin:0;color:#43516a}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f1f4fb;border-radius:7px;padding:2px 6px;color:#243a67}
 .question{border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}.qmeta{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:850}.qtext{font-size:17px;font-weight:700;margin:8px 0 13px}.options{display:grid;gap:8px}.option{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}.option:hover{border-color:#9fb5ff}.option.chosen{border-color:var(--blue);background:var(--blue2)}.option.correct{border-color:#80d0ad;background:#e9f8f1}.option.incorrect{border-color:#e8a2a2;background:#fff0f0}.feedback{margin-top:12px;border-radius:10px;padding:11px;background:#f7f9fd;color:#35435b}.feedback.good{background:#e9f8f1;color:#126c48}.feedback.bad{background:#fff0f0;color:#a33434}
@@ -140,6 +141,92 @@ const quizzes={
 "5.4":[{q:"X takes values 1 and 3 with probabilities 0.5 each. Find E(X).",o:["1","2","2.5","4"],a:1,e:"E(X)=1(0.5)+3(0.5)=2."}],
 "5.5":[{q:"For X~N(50, 4²), what is the standard deviation?",o:["4","16","50","54"],a:0,e:"In N(μ,σ²), the second parameter is variance, so σ=√16=4."}]
 };
+// Extra original practice questions: each syllabus topic has a sequence to move through, not a single question.
+const extraQuizzes={
+"1.1":[
+{q:"Solve x² − 7x + 12 = 0.",o:["x=2 or x=6","x=3 or x=4","x=−3 or x=−4","x=1 or x=12"],a:1,e:"Factor: (x−3)(x−4)=0, so x=3 or x=4."},
+{q:"Find the discriminant of x² + 2x + 5 = 0.",o:["24","16","−16","−24"],a:2,e:"b²−4ac=2²−4(1)(5)=4−20=−16."}],
+"1.2":[
+{q:"If f(x)=3x−2, what is f⁻¹(x)?",o:["3x+2","(x−2)/3","(x+2)/3","2−3x"],a:2,e:"Set y=3x−2, swap x and y, then solve: x=3y−2 gives y=(x+2)/3."},
+{q:"For g(x)=1/(x−5), which value is excluded from the domain?",o:["x=0","x=1","x=−5","x=5"],a:3,e:"The denominator cannot be zero, so x−5≠0 and x≠5."}],
+"1.3":[
+{q:"Find the gradient of the line through (2,3) and (4,7).",o:["1/2","2","4","−2"],a:1,e:"Gradient=(7−3)/(4−2)=4/2=2."},
+{q:"A line has gradient 4. What is the gradient of a perpendicular line?",o:["−4","1/4","−1/4","4"],a:2,e:"Perpendicular non-vertical gradients multiply to −1, so the gradient is −1/4."}],
+"1.4":[
+{q:"A sector has radius 3 cm and angle 2 radians. Find its area.",o:["3 cm²","6 cm²","9 cm²","18 cm²"],a:2,e:"Area=½r²θ=½×9×2=9 cm²."},
+{q:"Find the arc length when r=5 cm and θ=0.4 radians.",o:["0.08 cm","2 cm","5.4 cm","12.5 cm"],a:1,e:"Arc length s=rθ=5×0.4=2 cm."}],
+"1.5":[
+{q:"What is the exact value of sin 30°?",o:["√3/2","1/2","1","0"],a:1,e:"The exact value sin 30° is 1/2."},
+{q:"Solve tan x=1 for 0°≤x<360°.",o:["45° only","45°, 135°","45°, 225°","135°, 315°"],a:2,e:"Tangent is positive in quadrants I and III, giving 45° and 225°."}],
+"1.6":[
+{q:"A geometric sequence is 3, 6, 12, … Find the 5th term.",o:["24","36","48","96"],a:2,e:"The common ratio is 2, so the terms are 3, 6, 12, 24, 48."},
+{q:"An arithmetic sequence has first term 2 and common difference 3. Find the sum of its first 10 terms.",o:["155","145","150","320"],a:0,e:"S₁₀=10/2[2(2)+9(3)]=5(31)=155."}],
+"1.7":[
+{q:"Differentiate y=5x³.",o:["5x²","15x²","15x³","3x⁴"],a:1,e:"Using the power rule, dy/dx=5×3x²=15x²."},
+{q:"Find the x-coordinate of the stationary point of y=x²−4x+1.",o:["−2","−4","2","4"],a:2,e:"Differentiate to get 2x−4. Set 2x−4=0, so x=2."}],
+"1.8":[
+{q:"Evaluate ∫4x³ dx.",o:["12x²+C","x⁴+C","4x⁴+C","x³+C"],a:1,e:"Increase the power and divide by the new power: 4x⁴/4=x⁴+C."},
+{q:"Evaluate ∫₀² 2x dx.",o:["2","4","6","8"],a:1,e:"An antiderivative is x². Evaluate x² from 0 to 2: 4−0=4."}],
+"3.1":[
+{q:"Simplify (x²−4)/(x−2), where x≠2.",o:["x−2","x+2","x²+2","1"],a:1,e:"Factor x²−4=(x−2)(x+2), then cancel x−2."},
+{q:"Which expression equals 1/[x(x+1)]?",o:["1/x + 1/(x+1)","1/x − 1/(x+1)","1/(x+1) − 1/x","2/x"],a:1,e:"1/x−1/(x+1)=[(x+1)−x]/[x(x+1)]=1/[x(x+1)]."}],
+"3.2":[
+{q:"Evaluate log₂ 8.",o:["2","3","4","8"],a:1,e:"Since 2³=8, log₂8=3."},
+{q:"Solve e^(2x)=e⁶.",o:["x=2","x=3","x=4","x=6"],a:1,e:"Equal exponential bases give 2x=6, hence x=3."}],
+"3.3":[
+{q:"If sin x=3/5 and cos x=4/5, find cos 2x.",o:["24/25","7/25","−7/25","1"],a:1,e:"cos 2x=cos²x−sin²x=16/25−9/25=7/25."},
+{q:"Which identity is correct for cos 2x?",o:["2 sin x cos x","sin²x+cos²x","cos²x−sin²x","1−sin x"],a:2,e:"The double-angle identity is cos 2x=cos²x−sin²x."}],
+"3.4":[
+{q:"Differentiate y=x² sin x.",o:["2x cos x","2x sin x+x² cos x","x² cos x","2x sin x−x² cos x"],a:1,e:"Use the product rule: derivative of x² is 2x, and derivative of sin x is cos x."},
+{q:"Differentiate y=ln(3x+1).",o:["1/(3x+1)","3/(3x+1)","3 ln(3x+1)","1/(3x)"],a:1,e:"By the chain rule, d/dx ln(3x+1)=3/(3x+1)."}],
+"3.5":[
+{q:"Evaluate ∫2x(x²+1)³ dx.",o:["(x²+1)⁴/4+C","(x²+1)³+C","2(x²+1)⁴+C","x²(x²+1)³+C"],a:0,e:"Let u=x²+1, so du=2x dx. The integral becomes ∫u³du=u⁴/4+C."},
+{q:"Evaluate ∫eˣ dx.",o:["xeˣ+C","eˣ+C","eˣ/2+C","ln x+C"],a:1,e:"The exponential function eˣ is its own derivative and antiderivative."}],
+"3.6":[
+{q:"For xₙ₊₁=√(2+xₙ), if x₁=2, find x₂.",o:["1","2","√2","4"],a:1,e:"Substitute x₁=2: x₂=√(2+2)=√4=2."},
+{q:"For f(x)=x³−x−1, which interval shows a sign change?",o:["(0,1)","(1,2)","(2,3)","(3,4)"],a:1,e:"f(1)=−1 and f(2)=5, so the signs differ between 1 and 2."}],
+"3.7":[
+{q:"Find the magnitude of vector (2,−3,6).",o:["11","7","√41","5"],a:1,e:"Magnitude=√(2²+(−3)²+6²)=√49=7."},
+{q:"Find (1,2)·(3,4).",o:["7","10","11","14"],a:2,e:"Dot product=1×3+2×4=3+8=11."}],
+"3.8":[
+{q:"Solve dy/dx=3x² for y.",o:["y=3x+C","y=x³+C","y=6x+C","y=3x³+C"],a:1,e:"Integrating 3x² gives y=x³+C."},
+{q:"The differential equation dy/dx=y has general solution…",o:["y=x+C","y=Ceˣ","y=Cx","y=eˣ+C"],a:1,e:"Separating variables gives dy/y=dx; integration leads to ln|y|=x+C and y=Ceˣ."}],
+"3.9":[
+{q:"Simplify (2+3i)+(1−5i).",o:["3+8i","1−2i","3−2i","2−15i"],a:2,e:"Add real parts and imaginary parts separately: 2+1=3 and 3i−5i=−2i."},
+{q:"Find |1−i|.",o:["0","1","√2","2"],a:2,e:"The modulus is √(1²+(−1)²)=√2."}],
+"4.1":[
+{q:"A particle is in equilibrium with 12 N upward and weight W downward. Find W.",o:["0 N","6 N","12 N","24 N"],a:2,e:"Vertical forces balance in equilibrium, so W=12 N."},
+{q:"Horizontal forces of 9 N right and 5 N left act on a particle. Find the resultant.",o:["14 N right","4 N right","4 N left","45 N right"],a:1,e:"Resultant=9−5=4 N to the right."}],
+"4.2":[
+{q:"A particle starts from rest and accelerates at 2 m/s² for 5 s. Find its final speed.",o:["2 m/s","5 m/s","10 m/s","25 m/s"],a:2,e:"v=u+at=0+2×5=10 m/s."},
+{q:"A particle has u=3 m/s, a=2 m/s² and t=4 s. Find its displacement.",o:["14 m","20 m","28 m","32 m"],a:2,e:"s=ut+½at²=3×4+½×2×16=12+16=28 m."}],
+"4.3":[
+{q:"A 6 kg object accelerates at 2 m/s². Find the resultant force.",o:["3 N","8 N","12 N","18 N"],a:2,e:"Newton’s second law gives F=ma=6×2=12 N."},
+{q:"A resultant force of 20 N acts on a 4 kg mass. Find its acceleration.",o:["4 m/s²","5 m/s²","16 m/s²","80 m/s²"],a:1,e:"a=F/m=20/4=5 m/s²."}],
+"4.4":[
+{q:"A constant force of 6 N acts for 3 s. Find the impulse.",o:["2 Ns","9 Ns","18 Ns","36 Ns"],a:2,e:"Impulse=force×time=6×3=18 Ns."},
+{q:"Find the momentum of a 2 kg object moving at 4 m/s.",o:["2 kg m/s","6 kg m/s","8 kg m/s","16 kg m/s"],a:2,e:"Momentum p=mv=2×4=8 kg m/s."}],
+"4.5":[
+{q:"A constant force of 10 N moves an object 3 m in the force direction. Find the work done.",o:["3 J","13 J","30 J","300 J"],a:2,e:"Work done=force×distance in the force direction=10×3=30 J."},
+{q:"Find the kinetic energy of a 4 kg object moving at 5 m/s.",o:["20 J","40 J","50 J","100 J"],a:2,e:"KE=½mv²=½×4×25=50 J."}],
+"5.1":[
+{q:"Find the mean of 3, 5, 7 and 9.",o:["5","6","7","24"],a:1,e:"Mean=(3+5+7+9)/4=24/4=6."},
+{q:"Find the range of the data 12, 4, 9.",o:["5","8","9","12"],a:1,e:"Range=maximum−minimum=12−4=8."}],
+"5.2":[
+{q:"How many ordered arrangements of 2 people can be made from 5 people?",o:["10","15","20","25"],a:2,e:"5P2=5×4=20 because order matters."},
+{q:"How many ways can 2 people be selected from 6?",o:["12","15","30","36"],a:1,e:"6C2=6×5/(2×1)=15; order does not matter."}],
+"5.3":[
+{q:"A and B are independent, with P(A)=0.4 and P(B)=0.5. Find P(A∩B).",o:["0.1","0.2","0.4","0.9"],a:1,e:"For independent events, P(A∩B)=P(A)P(B)=0.4×0.5=0.2."},
+{q:"A and B are mutually exclusive, with P(A)=0.2 and P(B)=0.3. Find P(A∪B).",o:["0.06","0.1","0.5","0.6"],a:2,e:"Mutually exclusive events cannot occur together, so P(A∪B)=0.2+0.3=0.5."}],
+"5.4":[
+{q:"X is 0 with probability 0.25 and 2 with probability 0.75. Find E(X).",o:["0.5","1","1.5","2"],a:2,e:"E(X)=0×0.25+2×0.75=1.5."},
+{q:"X takes values 1 and 3 with probability 0.5 each. Find Var(X).",o:["0","1","2","4"],a:1,e:"E(X)=2 and E(X²)=0.5×1+0.5×9=5, so Var(X)=5−2²=1."}],
+"5.5":[
+{q:"X is normally distributed with mean 100. What is P(X<100)?",o:["0","0.25","0.5","1"],a:2,e:"A normal distribution is symmetric about its mean, so half the probability lies below 100."},
+{q:"X is normally distributed with mean 50 and standard deviation 10. Find the standardised value for X=70.",o:["−2","−1","1","2"],a:3,e:"z=(x−μ)/σ=(70−50)/10=2."}]
+};
+for(const [id, extra] of Object.entries(extraQuizzes)) quizzes[id]=[...(quizzes[id]||[]),...extra];
+
 const stages=["Theory","Formulas","Basic questions","Exam questions","Hard questions","Mistake correction","Retest"];
 let state={status:{},stages:{},attempts:0,correct:0,mistakes:[],answered:{},paperAttempts:[]};
 try{state={...state,...JSON.parse(localStorage.getItem("9709hub")||"{}")}}catch(e){}
@@ -152,9 +239,10 @@ function renderStats(){const secure=topics.filter(t=>state.status[t[1]]==="Secur
 function renderTopics(){const arr=topics.filter(t=>filter==="ALL"||t[0]===filter);$("topicList").innerHTML=arr.map(t=>{let s=state.status[t[1]]||"Needs work",done=(state.stages[t[1]]||[]).length;return `<button class="topic ${selected===t[1]?'selected':''}" data-topic="${t[1]}"><span class="code">${t[0]} · ${t[1]}</span><strong>${t[2]}</strong><span class="status ${s==="Secure"?'secure':s==="Weak"?'weak':'work'}">${s}</span><div class="mini"><span style="width:${done/stages.length*100}%"></span></div></button>`}).join("");document.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>{selected=b.dataset.topic;qIndex=0;chosen=null;renderTopics();renderStudy()})}
 
 function difficultyQuestion(topic, level, base){
+ // Keep each level connected to a real question in the topic bank so Next question never repeats one generic prompt.
  if(level==="Starter") return base;
- if(level==="Exam") return {q:`Exam practice: ${topic[2]}. Explain the method you would use, then solve a suitable Cambridge-style question from your notes or a past paper. What is the key first step?`,o:["Identify the relevant formula/rule and show the working","Guess an answer and move on","Use a formula even if its conditions do not apply","Skip working and write only a final answer"],a:0,e:`For ${topic[2]}, start by identifying the relevant method, state any conditions, show each step clearly, and check the result. This is a guided exam-strategy prompt rather than an official past-paper question.`};
- return {q:`Challenge: ${topic[2]}. Without notes, describe one common trap in this topic and how you would check your final answer.`,o:["Check conditions, signs/units and whether the result fits the question","Only check whether the answer is an integer","Round every intermediate value immediately","Ignore domain or modelling restrictions"],a:0,e:`Challenge habit: check assumptions, signs, units, domain restrictions and whether your answer is sensible. Then attempt a harder question from an official paper.`};
+ if(level==="Exam") return {...base,q:`Exam practice · ${base.q}`,e:`Exam approach: show the relevant method and working, state any restrictions, and check the result. ${base.e}`};
+ return {...base,q:`Challenge · ${base.q}`,e:`Challenge check: justify each step and check signs, restrictions and whether the result is sensible. ${base.e}`};
 }
 function renderStudy(){let t=topicById(selected);if(!t)return;let completed=state.stages[selected]||[];let baseQs=quizzes[selected]||[{q:"Write down the key rule or formula for this topic, then check it against your notes.",o:["I can explain it without notes","I need more practice"],a:0,e:"Use your course notes and official syllabus to check your explanation."}];let qs=baseQs.map(q=>difficultyQuestion(t,currentDifficulty,q));if(qIndex>=qs.length)qIndex=0;let q=qs[qIndex];let answered=chosen!==null;
 $("studyContent").innerHTML=`<span class="tag">${t[0]} · ${t[1]}</span><h2>${t[2]}</h2><p class="sub">Work through the full study path. Tick a stage when you have completed it properly.</p>
@@ -162,16 +250,16 @@ $("studyContent").innerHTML=`<span class="tag">${t[0]} · ${t[1]}</span><h2>${t[
 <div class="note"><h3>Core idea</h3><p>${t[3]}</p></div><div class="note"><h3>Formula / exam reminder</h3><p>${t[4]}</p></div>
 <div class="formrow"><select class="field" id="difficultySelect"><option value="Starter">Starter</option><option value="Exam">Exam practice</option><option value="Challenge">Challenge</option></select><div class="resultbox" style="margin:0;font-size:12px">Difficulty changes the practice prompt and guidance.</div></div><div class="question"><div class="qmeta">${currentDifficulty} practice · Question ${qIndex+1} of ${qs.length}</div><div class="qtext">${q.q}</div><div class="options">${q.o.map((o,i)=>`<button class="option ${answered&&i===q.a?'correct':answered&&i===chosen?'incorrect':''} ${chosen===i?'chosen':''}" data-option="${i}" ${answered?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join("")}</div>
 ${answered?`<div class="feedback ${chosen===q.a?'good':'bad'}"><strong>${chosen===q.a?'Correct.':'Not quite.'}</strong> ${q.e}</div>`:""}
-<div class="actions">${answered?`<button class="btn" id="nextQ">${qIndex===qs.length-1?'Restart questions':'Next question'}</button>`:`<button class="btn secondary" id="revealQ">Show answer</button>`}</div></div>
-<div class="note"><h3>Mark your confidence</h3><p>Be honest: Secure means you can answer unfamiliar questions independently and show full working.</p><div class="actions"><button class="btn" data-status="Secure">Mark Secure</button><button class="btn secondary" data-status="Needs work">Needs work</button><button class="btn secondary" data-status="Weak">Mark Weak</button></div></div>
-<div class="actions"><button class="btn secondary" id="openPast">Open official past papers ↗</button></div>`;
+<div class="actions">${answered?`<button class="btn" id="nextQ">${qIndex===qs.length-1?'Start again from Q1':'Next question →'}</button>`:`<button class="btn secondary" id="revealQ">Show answer</button>`}</div></div>
+<div class="note"><h3>Mark your confidence</h3><p>Be honest: Secure means you can answer unfamiliar questions independently and show full working.</p><div class="actions"><button class="btn ${state.status[selected]==="Secure"?"status-selected":""}" data-status="Secure" aria-pressed="${state.status[selected]==="Secure"}">Mark Secure</button><button class="btn secondary ${state.status[selected]==="Needs work"?"status-selected":""}" data-status="Needs work" aria-pressed="${state.status[selected]==="Needs work"}">Needs work</button><button class="btn secondary ${state.status[selected]==="Weak"?"status-selected":""}" data-status="Weak" aria-pressed="${state.status[selected]==="Weak"}">Mark Weak</button></div></div>
+<div class="actions"><a class="btn secondary" id="openPast" href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none">Open official past papers ↗</a></div>`;
 const ds=$("difficultySelect");if(ds){ds.value=currentDifficulty;ds.onchange=()=>{currentDifficulty=ds.value;qIndex=0;chosen=null;renderStudy()}};
 document.querySelectorAll("[data-stage]").forEach(b=>b.onclick=()=>{let i=+b.dataset.stage;let a=state.stages[selected]||[];state.stages[selected]=a.includes(i)?a.filter(x=>x!==i):[...a,i].sort((x,y)=>x-y);save();renderStudy()});
 document.querySelectorAll("[data-option]").forEach(b=>b.onclick=()=>answer(+b.dataset.option,q));
 $("revealQ").onclick=()=>{chosen=-1;renderStudy();$("studyContent").querySelector(".feedback")?.scrollIntoView({block:"nearest"})};
 $("nextQ")?.addEventListener("click",()=>{qIndex=(qIndex+1)%qs.length;chosen=null;renderStudy()});
-document.querySelectorAll("[data-status]").forEach(b=>b.onclick=()=>{state.status[selected]=b.dataset.status;save();renderStudy()});
-$("openPast").onclick=()=>window.open("https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/","_blank","noopener");
+document.querySelectorAll("[data-status]").forEach(b=>b.onclick=()=>{state.status[selected]=b.dataset.status;save();renderStudy();const note=document.createElement("p");note.className="small muted";note.textContent=`Confidence saved: ${state.status[selected]}.`;const confidence=[...document.querySelectorAll("#studyContent .note h3")].find(h=>h.textContent.includes("Mark your confidence"));if(confidence){confidence.parentElement.appendChild(note)}});
+
 }
 function answer(i,q){if(chosen!==null)return;chosen=i;state.attempts++;if(i===q.a)state.correct++;save();renderStudy()}
 function renderMistakes(){$("mistakeList").innerHTML=state.mistakes.length?state.mistakes.map((m,i)=>`<div class="logitem">${escapeHtml(m)} <button class="btn secondary" style="float:right;padding:3px 8px" data-del="${i}">Remove</button></div>`).join(""):'<p class="small muted">No mistakes logged yet. Add one after marking a question.</p>';document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{state.mistakes.splice(+b.dataset.del,1);save()})}
